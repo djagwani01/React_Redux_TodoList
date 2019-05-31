@@ -4,7 +4,14 @@ import './App.css';
 import {connect} from 'react-redux'
 
 class App extends React.Component {
-    //let deleteBtn = 
+
+  constructor(){
+    super()
+
+    this.inputRef = React.createRef()
+
+  }
+
     render(){
   return (
     <div className="App">
@@ -12,9 +19,9 @@ class App extends React.Component {
       <input 
       type="text" 
       placeholder="Enter Items"
-      onChange={this.props.onHandleChange} />
+      ref = {this.inputRef} />
       <br />
-      <button onClick={this.props.onHandleClick}>Add</button>
+      <button onClick={this.props.onHandleClick.bind(this, this.inputRef)}>Add</button>
 
       <br />
 
@@ -44,8 +51,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    onHandleChange: (e) => dispatch({type: 'inputChange', val: e.target.value}),
-    onHandleClick: () => dispatch({type: 'addItem'}),
+    onHandleClick: (val) => dispatch({type: 'addItem', val: val}),
     onHandleDelete: (id) => dispatch({type: 'deleteItem', val: id})
   }
 
