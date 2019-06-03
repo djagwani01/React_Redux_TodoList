@@ -2,6 +2,9 @@ import React from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import {connect} from 'react-redux'
+import Input from './components/input'
+import Button from './components/button'
+import List from './components/list'
 
 class App extends React.Component {
     //let deleteBtn = 
@@ -9,24 +12,16 @@ class App extends React.Component {
   return (
     <div className="App">
       <header className="App-header">
-      <input 
-      type="text" 
-      placeholder="Enter Items"
-      onChange={this.props.onHandleChange} />
+      <Input 
+       onHandleChange={this.props.onHandleChange} 
+       />
       <br />
-      <button onClick={this.props.onHandleClick}>Add</button>
-
+      <Button 
+      onHandleClick={this.props.onHandleClick}
+      />
       <br />
-
-      <ol>
-        {this.props.list.map((listItem, index)=>{
-          return(
-            <div>
-              <li>{listItem} <button onClick={this.props.onHandleDelete.bind(this, index)}>Delete</button></li>
-            </div>
-            )
-        })}
-      </ol>
+      <List
+      />
         
       </header>
     </div>
